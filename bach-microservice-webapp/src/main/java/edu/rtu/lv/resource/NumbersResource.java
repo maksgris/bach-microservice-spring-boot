@@ -4,6 +4,7 @@ import edu.rtu.lv.numbers.NumbersResponse;
 import edu.rtu.lv.numbers.service.NumbersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/numbers")
+@RequestMapping
 public class NumbersResource {
 
     private static final Logger logger = LoggerFactory.getLogger(NumbersResource.class);
@@ -25,13 +26,13 @@ public class NumbersResource {
     @GetMapping(value = "terminal")
     public ResponseEntity<NumbersResponse> generateNumbers() {
         logger.debug("Generating numbers and printing them into console");
-        return ResponseEntity.ok(numbersService.generateNumbers());
+        return ResponseEntity.ok(numbersService.generateNumbersTerminal());
     }
 
-    // TODO: WIP
     @PostMapping(value = "data-base")
-    public ResponseEntity<NumbersResponse> generateNumbersDB() {
+    public ResponseEntity<Void> generateNumbersDB() {
         logger.debug("Generating numbers and posting them into db");
-        return ResponseEntity.ok(numbersService.generateNumbersDB());
+        numbersService.generateNumbersDB();
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

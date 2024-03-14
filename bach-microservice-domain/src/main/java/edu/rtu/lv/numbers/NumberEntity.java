@@ -2,36 +2,33 @@ package edu.rtu.lv.numbers;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "numbers")
-public class NumbersEntity {
+public class NumberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @ElementCollection
-    @Column(name = "numbers")
-    private List<Integer> numbersList;
+    @Column(name = "number")
+    private Integer number;
 
     public Long getId() {
         return id;
     }
 
-    public NumbersEntity setId(Long id) {
+    public NumberEntity setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public List<Integer> getNumbersList() {
-        return numbersList;
+    public Integer getNumber() {
+        return number;
     }
 
-    public NumbersEntity setNumbersList(List<Integer> numbersList) {
-        this.numbersList = numbersList;
+    public NumberEntity setNumber(Integer number) {
+        this.number = number;
         return this;
     }
 }

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.rtu.lv</groupId>
-    <artifactId>bach-microservice-service</artifactId>
+    <artifactId>bach-microservice-repository</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bach-microservice-service</name>
-    <description>bach-microservice-service</description>
+    <name>bach-microservice-repository</name>
+    <description>bach-microservice-repository</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -28,20 +28,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>edu.rtu.lv</groupId>
-            <artifactId>bach-microservice-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
         </dependency>
         <dependency>
             <groupId>edu.rtu.lv</groupId>
             <artifactId>bach-microservice-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>edu.rtu.lv</groupId>
-            <artifactId>bach-microservice-repository</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
