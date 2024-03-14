@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BachMicroserviceSpringBootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BachMicroserviceSpringBootApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BachMicroserviceSpringBootApplication.class, args);
+    }
 
 }
