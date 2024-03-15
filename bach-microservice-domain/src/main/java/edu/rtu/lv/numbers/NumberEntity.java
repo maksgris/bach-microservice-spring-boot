@@ -1,7 +1,11 @@
 package edu.rtu.lv.numbers;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
 
+@Data
+@Getter
 @Entity
 @Table(name = "numbers")
 public class NumberEntity {
@@ -14,21 +18,10 @@ public class NumberEntity {
     @Column(name = "number")
     private Integer number;
 
-    public Long getId() {
-        return id;
-    }
-
-    public NumberEntity setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public NumberEntity setNumber(Integer number) {
+    public NumberEntity(Integer number) {
         this.number = number;
-        return this;
+    }
+
+    public NumberEntity() {
     }
 }

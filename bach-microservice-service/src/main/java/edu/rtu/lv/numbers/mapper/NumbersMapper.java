@@ -17,7 +17,7 @@ public class NumbersMapper {
         }
 
         return response.getNumbersList().stream()
-                .map(number -> new NumberEntity().setNumber(number))
+                .map(NumberEntity::new)
                 .toList();
     }
 
@@ -32,7 +32,6 @@ public class NumbersMapper {
                 .toList();
 
         return NumbersResponse.builder()
-                .id(1L)
                 .numbersList(numbersList)
                 .build();
     }
