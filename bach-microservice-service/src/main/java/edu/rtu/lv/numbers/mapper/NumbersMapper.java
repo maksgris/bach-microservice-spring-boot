@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.StreamSupport;
 
 @Component
 public class NumbersMapper {
@@ -21,17 +22,18 @@ public class NumbersMapper {
                 .toList();
     }
 
-    public NumbersResponse toDTO(List<NumberEntity> entityList) {
-        if (entityList == null || entityList.isEmpty()) {
+    public NumbersResponse toDTO(Iterable<NumberEntity> entityList, Integer currentAmount) {
+        if (entityList == null) {
             return null;
         }
 
-        List<Integer> numbersList = entityList.stream()
+        List<Integer> numbersList = StreamSupport.stream(entityList.spliterator(), false)
                 .map(NumberEntity::getNumber)
                 .filter(Objects::nonNull)
                 .toList();
 
         return NumbersResponse.builder()
+                .amountOfNumbers(currentAmount)
                 .numbersList(numbersList)
                 .build();
     }

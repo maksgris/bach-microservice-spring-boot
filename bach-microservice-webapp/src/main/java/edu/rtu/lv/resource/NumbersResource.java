@@ -5,16 +5,15 @@ import edu.rtu.lv.numbers.NumbersResponse;
 import edu.rtu.lv.numbers.service.NumbersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class NumbersResource {
 
     private static final Logger logger = LoggerFactory.getLogger(NumbersResource.class);
@@ -26,19 +25,20 @@ public class NumbersResource {
     }
 
     @GetMapping(value = "/get-numbers")
-    public ResponseEntity<List<NumberEntity>> getNumbers() {
+    public ResponseEntity<NumbersResponse> getNumbers() {
         return ResponseEntity.ok(numbersService.getNumbers());
     }
 
     @PostMapping(value = "/save-numbers")
-    public ResponseEntity<NumbersResponse> saveNumbers() {
+    public ResponseEntity<NumbersResponse> saveNumbers(@RequestParam Integer numbersAmount) {
         logger.debug("Generating numbers and saving them to db");
-        return ResponseEntity.ok(numbersService.saveNumbers());
+        return ResponseEntity.ok(numbersService.saveNumbers(numbersAmount));
     }
 
-    @PostMapping(value = "/print-numbers")
-    public ResponseEntity<NumbersResponse> generateNumbers() {
-        logger.debug("Generating numbers and printing them into console");
-        return ResponseEntity.ok(numbersService.generateNumbers());
+    @DeleteMapping(value = "delete-numbers")
+    public ResponseEntity<Void> deleteNumbers() {
+        logger.debug("Removing all numbers from db");
+        numbersService.deleteNumbers();
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
